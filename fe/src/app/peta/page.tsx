@@ -5,6 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBook, FaStore, FaTools, FaUmbrellaBeach } from "react-icons/fa";
 import { PiSidebarSimple, PiSidebarSimpleDuotone } from "react-icons/pi";
+import Link from "next/link";
 
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 const kecamatanList = ["Cibinong", "Cisarua", "Bojong Gede", "Sukamakmur"];
@@ -108,7 +109,9 @@ export default function PetaPage() {
               </div>
 
               <div>
-                <button className="w-full py-2 bg-green-600 text-white rounded-lg">Lihat Detail</button>
+                <Link href="/peta/sukamakmur" className="cursor-pointer">
+                  <button className="w-full py-2 bg-green-600 text-white rounded-lg cursor-pointer">Lihat Detail</button>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -133,7 +136,7 @@ export default function PetaPage() {
 
       {/* Sidebar Kanan Floating */}
       {showRightSidebar && (
-        <div className="absolute right-0 top-0 w-[320px] h-full bg-transparent p-4 z-30">
+        <div className="absolute right-0 top-0 w-[320px] h-auto bg-transparent p-4 z-30">
           <Accordion />
         </div>
       )}
