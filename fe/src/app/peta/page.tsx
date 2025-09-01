@@ -174,7 +174,7 @@ export default function PetaPage() {
 
       {/* Sidebar Kanan Floating */}
       {showRightSidebar && (
-        <div className="absolute right-0 bottom-20 sm:top-0 w-full sm:w-[320px] h-auto bg-transparent p-2 sm:p-4 z-20">
+        <div className="absolute right-0 bottom-28 sm:top-0 w-full sm:w-[320px] h-auto bg-transparent p-2 sm:p-4 z-20">
           <Accordion />
         </div>
       )}
