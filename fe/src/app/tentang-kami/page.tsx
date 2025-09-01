@@ -53,10 +53,15 @@ export default function TentangKamiPage() {
       />
 
       <section className="relative w-full ">
-        <div className="max-w-7xl mx-auto px-4 md:px-0 pb-24">
-          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
+        <div className="max-w-7xl mx-auto px-4 lg:px-0 pb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-4 justify-center items-center"
+          >
             <div className="justify-self-center">
-              <Image src="/assets/PINTER.png" alt="Tentang Kami" width={400} height={83} className="w-[400px] object-cover" />
+              <Image src="/assets/PINTER.png" alt="Tentang Kami" width={400} height={83} className="w-auto sm:w-[400px] object-cover" />
             </div>
             <div>
               <Image src="/assets/map-kab.png" alt="Tentang Kami" width={620} height={365} className="w-[620px] object-cover" />
@@ -67,7 +72,7 @@ export default function TentangKamiPage() {
 
       <section className="relative w-full">
         <div className="absolute bottom-0 left-0 w-full h-[960px] pointer-events-none bg-gradient-to-b from-[#00994B]/0 via-[#00994B]/50 to-[#00994B]/0 opacity-[0.1]" />
-        <div className="max-w-7xl mx-auto px-4 md:px-0 pb-24">
+        <div className="max-w-7xl mx-auto px-4 lg:px-0 pb-24">
           <div className="text-center pb-24">
             <h1 className="text-[32px] font-bold text-black leading-[120%]">Visi</h1>
             <p className="mt-10 text-[20px] font-medium text-black opacity-[0.4] leading-[120%]">Mendorong pertumbuhan ekonomi daerah dan kesejahteraan masyarakat.</p>

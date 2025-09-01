@@ -60,7 +60,7 @@ const cardData: CardItem[] = [
 
 export default function CardGridKec() {
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-0">
+    <div className="max-w-7xl mx-auto px-0">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 space-y-8">
         {cardData.map((card) => (
           <div key={card.id} className="bg-white rounded-[20px] shadow-lg p-6 flex flex-col">

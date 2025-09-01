@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBook, FaStore, FaTools, FaUmbrellaBeach } from "react-icons/fa";
 import { PiSidebarSimple, PiSidebarSimpleDuotone } from "react-icons/pi";
@@ -21,6 +21,9 @@ export default function PetaPage() {
   const handleKecamatanSelect = (nama: string) => {
     // kalau klik yang sama → toggle off, kalau beda → ganti
     setActiveKecamatan((prev) => (prev === nama ? null : nama));
+    if (window.innerWidth < 640) {
+      setShowLeftSidebar(false);
+    }
   };
 
   // eksklusif toggle master Kecamatan
@@ -43,12 +46,47 @@ export default function PetaPage() {
       setShowKecamatan(false);
       setActiveKecamatan(null);
     }
+    if (window.innerWidth < 640) {
+      setShowLeftSidebar(false);
+    }
   };
 
   const [showLeftSidebar, setShowLeftSidebar] = useState(true);
   const [showRightSidebar, setShowRightSidebar] = useState(true);
+  const [cekleftSidebarWidth, setLeftSidebarWidth] = useState(350);
+  const [toggleLeftSidebar, settoggleLeftSidebar] = useState(360);
+  const leftSidebarWidth = cekleftSidebarWidth;
+  useEffect(() => {
+    // cek lebar layar saat pertama load
+    if (window.innerWidth <= 400) {
+      setLeftSidebarWidth(290);
+      settoggleLeftSidebar(300);
+    }
 
-  const leftSidebarWidth = 350;
+    if (window.innerWidth <= 768) {
+      setShowLeftSidebar(false);
+    }
+
+    // tambahkan listener resize
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setShowLeftSidebar(false);
+      } else {
+        setShowLeftSidebar(true); // optional: show lagi jika >768px
+      }
+
+      if (window.innerWidth <= 400) {
+        setLeftSidebarWidth(290);
+        settoggleLeftSidebar(300);
+      } else {
+        setLeftSidebarWidth(350);
+        settoggleLeftSidebar(360);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="fixed w-screen h-screen overflow-hidden flex">
@@ -59,7 +97,7 @@ export default function PetaPage() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -350, opacity: 0 }}
             transition={{ type: "spring", stiffness: 80, damping: 20 }}
-            className="absolute top-0 left-0 h-screen w-[350px] bg-white shadow-lg px-4 pt-10 pb-24 z-20 flex flex-col justify-between"
+            className="absolute top-0 left-0 h-screen w-[290px] xs:w-[350px] bg-white shadow-lg px-4 pt-10 pb-24 z-30 flex flex-col justify-between"
           >
             {/* Bagian Atas */}
             <div>
@@ -122,7 +160,7 @@ export default function PetaPage() {
       <motion.button
         onClick={() => setShowLeftSidebar(!showLeftSidebar)}
         initial={false}
-        animate={{ left: showLeftSidebar ? 360 : 10 }}
+        animate={{ left: showLeftSidebar ? toggleLeftSidebar : 10 }}
         transition={{ type: "spring", stiffness: 80, damping: 15 }}
         className="absolute top-20 z-30 bg-white p-2 rounded-[10px] shadow-md"
       >
@@ -136,7 +174,7 @@ export default function PetaPage() {
 
       {/* Sidebar Kanan Floating */}
       {showRightSidebar && (
-        <div className="absolute right-0 top-0 w-[320px] h-auto bg-transparent p-4 z-30">
+        <div className="absolute right-0 bottom-20 sm:top-0 w-full sm:w-[320px] h-auto bg-transparent p-2 sm:p-4 z-20">
           <Accordion />
         </div>
       )}

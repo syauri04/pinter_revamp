@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "leaflet/dist/leaflet.css";
 
+@theme {
+  --breakpoint-xs: 26rem;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #000000;

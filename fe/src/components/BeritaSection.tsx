@@ -79,10 +79,10 @@ export default function BeritaSection() {
         <Image src="/assets/berita1.jpg" alt="Background" fill className="object-cover object-bottom opacity-[0.8]" />
       </div>
 
-      <div className="container max-w-7xl mx-auto relative px-4 xl:px-0 py-24 z-10">
+      <div className="container max-w-7xl mx-auto relative px-4 xl:px-0 py-0 sm:py-24 pb-24 sm:pb-0 z-10">
         {/* Header */}
         <div className="flex justify-between items-center mb-14">
-          <h2 className="font-bold text-[56px] tracking-[-0.01em] leading-[100%] text-[#000000]">Berita Terkini</h2>
+          <h2 className="font-bold  text-[32px] sm:text-[56px] tracking-[-0.01em] leading-[100%] text-[#000000]">Berita Terkini</h2>
           <a href="#" className="font-bold text-[20px] leading-[120%] text-[#00994B] underline">
             Lihat Semua
           </a>

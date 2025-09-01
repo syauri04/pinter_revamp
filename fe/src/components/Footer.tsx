@@ -8,7 +8,7 @@ export default function Footer() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   return (
-    <footer className={`relative w-full bg-[#fafafa] rounded-xl sm:rounded-t-[80px] overflow-hidden ${isHome ? "-mt-14" : ""}`}>
+    <footer className={`relative w-full bg-[#fafafa] rounded-xl sm:rounded-t-[80px] overflow-hidden ${isHome ? "-mt-8 sm:-mt-14" : ""}`}>
       <div className="max-w-4xl xl:max-w-7xl mx-auto py-14 px-6 lg:px-0">
         <div>
           <Image src="/assets/logo.png" alt="IBioFund" width={190} height={40} />
@@ -70,7 +70,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className="max-w-7xl mx-auto flex flex-col text-base text-black opacity-[0.2]  py-4">
+      <div className="max-w-7xl mx-auto flex flex-col text-base text-black opacity-[0.2] px-4 sm:px-0 py-4">
         <div className="flex space-x-4 space-y-5">
           <Link href="https://www.instagram.com/" target="_blank" className="hover:opacity-[1] transition">
             <AiFillInstagram size={39} />

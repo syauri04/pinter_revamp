@@ -125,7 +125,8 @@ export default function SectionPotensi() {
     }
   }, []);
 
-  const outerRadius = containerWidth ? containerWidth * 0.3 : 190;
+  const outerRadius = containerWidth ? containerWidth * (containerWidth > 560 ? 0.3 : 0.4) : 190;
+
   const fontSize = containerWidth ? Math.max(containerWidth * 0.03, 12) : 20;
 
   return (
@@ -190,16 +191,16 @@ export default function SectionPotensi() {
               {/* Tahun pills */}
               <div className="flex items-center gap-4 xl:gap-8 text-base font-bold text-black tracking-[-0.01em]">
                 <span className="shrink-0">Tahun</span>
-                <div className="flex gap-2.5 xl:gap-5">
+                <div className="flex gap-1 xs:gap-2.5 xl:gap-5">
                   {lineData.map((d) => (
-                    <span key={d.year} className="inline-flex items-center text-white font-bold text-sm xl:text-xl bg-[#FE9100] justify-center rounded-full px-3 sm:px-4 py-[4px] sm:py-[8px]">
+                    <span key={d.year} className="inline-flex items-center text-white font-bold text-sm xl:text-xl bg-[#FE9100] justify-center rounded-full px-2 xs:px-3 sm:px-4 py-[3px] xs:py-[4px] sm:py-[8px]">
                       {d.year}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center gap-4">
+              <div className="mt-4 flex items-center sm:gap-4">
                 <div className="text-base font-bold text-black tracking-[-0.01em] pt-2">
                   Target
                   <br />
@@ -267,9 +268,9 @@ export default function SectionPotensi() {
 
               {/* Logos */}
               <div className="mt-18 flex items-center gap-6">
-                <Image src="/assets/logo-kab.png" alt="Bogor" width={64} height={74} className="h-[74px] w-auto object-contain" />
-                <Image src="/assets/logo-dpmptsp.png" alt="DPMPTSP" width={160} height={87} className="h-[87px] w-auto object-contain" />
-                <Image src="/assets/logo-mpp.png" alt="MPP" width={128} height={85} className="h-[85px] w-auto object-contain" />
+                <Image src="/assets/logo-kab.png" alt="Bogor" width={64} height={74} className="h-[54px] xs:h-[74px] w-auto object-contain" />
+                <Image src="/assets/logo-dpmptsp.png" alt="DPMPTSP" width={160} height={87} className="h-[57px] xs:h-[87px] w-auto object-contain" />
+                <Image src="/assets/logo-mpp.png" alt="MPP" width={128} height={85} className="h-[55px] xs:h-[85px] w-auto object-contain" />
               </div>
             </div>
           </div>

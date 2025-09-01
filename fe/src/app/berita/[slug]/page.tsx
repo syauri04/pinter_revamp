@@ -4,13 +4,13 @@ import Image from "next/image";
 
 export default function BeritaDetailPage() {
   return (
-    <section className="relative w-full pt-40 pb-24">
+    <section className="relative w-full pt-36 sm:pt-40 pb-24">
       <div className={`absolute inset-0 bg-[linear-gradient(180deg, #FE9100 0%, rgba(254, 145, 0, 0) 100%)]`}></div>
 
-      <div className="max-w-4xl mx-auto px-8 relative z-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-8 relative z-10">
         {/* Cover Image */}
         <div className="w-full mb-8">
-          <Image src="/assets/galeri1.jpg" alt="Peta Potensi Investasi Terpadu" width={1200} height={600} className="w-full h-auto rounded-[30px] object-cover" />
+          <Image src="/assets/galeri1.jpg" alt="Peta Potensi Investasi Terpadu" width={1200} height={600} className="w-full h-auto rounded-xl sm:rounded-[30px] object-cover" />
         </div>
 
         {/* Title */}

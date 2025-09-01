@@ -41,7 +41,7 @@ export default function Home() {
     <main>
       <Hero />
       <section className="relative w-full bg-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-4 xl:px-0 py-24">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-4 xl:px-0 py-16 sm:py-24">
           <div>
             <h1 className="font-bold text-[32px] sm:text-[56px] tracking-[-0.01em] leading-[100%] text-[#000000]">Peta Potensi Investasi Terpadu (PINTER)</h1>
           </div>

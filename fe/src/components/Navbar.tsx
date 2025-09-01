@@ -41,11 +41,18 @@ export default function Navbar() {
     >
       <div className={`${isPetaRoot ? "max-w-full px-4" : "max-w-7xl px-4 xl:px-0"} mx-auto flex items-center justify-between py-4`}>
         {/* Logo */}
-        <div className="flex items-center gap-6">
-          <Link href="/">
-            <Image src="/assets/logo.png" alt="PINTER Logo" width={167} height={35} />
-          </Link>
-          <Image src="/assets/logo-kab.png" alt="Logo Kabupaten" width={41} height={48} />
+        <div className="flex items-center gap-3 sm:gap-6">
+          {/* Logo PINTER */}
+          <div className="relative w-[152px] sm:w-[167px] h-[32px] sm:h-[35px] ">
+            <Link href="/">
+              <Image src="/assets/logo.png" alt="PINTER Logo" fill style={{ objectFit: "contain" }} />
+            </Link>
+          </div>
+
+          {/* Logo Kabupaten */}
+          <div className="relative w-[34px] sm:w-[41px] h-[40px] sm:h-[48px] ">
+            <Image src="/assets/logo-kab.png" alt="Logo Kabupaten" fill style={{ objectFit: "contain" }} />
+          </div>
         </div>
 
         {/* Desktop Nav */}
@@ -91,12 +98,12 @@ export default function Navbar() {
         {/* Mobile Hamburger */}
 
         {isPetaRoot ? (
-          <Link href="/" onClick={() => setIsOpen(false)} className="lg:hidden border border-[#00994B] hover:bg-[#00994B] hover:text-white text-[#00994B] px-6 py-3 rounded-2xl font-bold transition">
+          <Link href="/" onClick={() => setIsOpen(false)} className="lg:hidden border border-[#00994B] hover:bg-[#00994B] hover:text-white text-[#00994B] px-4 sm:px-6 py-3 rounded-2xl font-bold transition">
             Beranda
           </Link>
         ) : isPetaSlug ? (
           <Link href="/peta" onClick={() => setIsOpen(false)} className="lg:hidden border border-[#00994B] hover:bg-[#00994B] hover:text-white text-[#00994B] px-6 py-3 rounded-2xl font-bold transition">
-            Kembali ke Peta
+            Peta
           </Link>
         ) : (
           <button className="lg:hidden flex items-center justify-center p-2" onClick={() => setIsOpen(true)}>

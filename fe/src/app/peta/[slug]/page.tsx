@@ -39,10 +39,10 @@ export default function KecamatanDetailPage() {
     <div>
       <BreadcumbKec />
       <section className="relative w-full bg-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-4 md:px-0 py-16 items-start">
-          <div>
-            <h1 className="font-bold text-[80px] leading-[100%] text-[#000000] mb-10">Kecamatan Sukamakmur</h1>
-            <p className="font-medium text-2xl leading-[120%] text-[#000000] opacity-[0.4]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 px-4 xl:px-0 py-14 md:py-16 items-start">
+          <div className="order-2 sm:order-1">
+            <h1 className="font-bold text-5xl md:text-[80px] leading-[100%] text-[#000000] mb-10">Kecamatan Sukamakmur</h1>
+            <p className="font-medium text-lg md:text-2xl leading-[120%] text-[#000000] opacity-[0.4]">
               Kecamatan Sukamakmur memiliki luas 16.982,65 Ha, memiki 10 desa/kelurahan dengan ibukecamatan di desa Sukamakmur, memiliki penduduk sebanyak 79.631 jiwa dan masuk di wilayah timur Kabupaten Bogor.
             </p>
 
@@ -55,7 +55,7 @@ export default function KecamatanDetailPage() {
               </Link>
             </div>
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-center lg:justify-end order-1 sm:order-2">
             <Image src="/assets/map-kec.png" alt="Tentang Kami" width={620} height={365} className="w-[580px] object-contain" />
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function KecamatanDetailPage() {
               key={item.id}
               className="flex justify-center !w-auto" // ✅ lebar slide = auto, bukan full
             >
-              <div className="relative w-[840px] h-[480px]">
+              <div className="relative w-[300px] sm:w-[500px] lg:w-[840px] h-[171px] sm:h-[285px] lg:h-[480px]">
                 <Image src={item.image} alt={`slide-${item.id}`} fill className="object-cover rounded-2xl" priority />
 
                 {item.youtubeUrl && (
@@ -109,7 +109,7 @@ export default function KecamatanDetailPage() {
           )}
         </AnimatePresence>
 
-        <div className="container max-w-7xl mx-auto relative px-4 md:px-0 py-24 z-40">
+        <div className="container max-w-7xl mx-auto relative px-4 xl:px-0 py-24 z-40">
           <h1 className="font-bold text-[32px] leading-[100%] text-black mb-10">Potensi Investasi:</h1>
           <CardGridKec />
         </div>
