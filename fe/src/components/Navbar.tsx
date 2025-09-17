@@ -34,7 +34,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`w-full z-40 transition-all duration-300 
+      className={`w-full z-[9999] transition-all duration-300 
         ${isPetaPage ? "relative bg-white" : "fixed"} 
         ${!isPetaPage && (isScrolled ? "bg-white/70 backdrop-blur-md shadow-sm" : "bg-transparent")}
       `}

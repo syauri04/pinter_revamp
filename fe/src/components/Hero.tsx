@@ -1,14 +1,18 @@
 "use client";
+
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
 
+import dynamic from "next/dynamic";
+const MapView = dynamic(() => import("./MapVIew"), { ssr: false });
+
 export default function Hero() {
   return (
     <section className="relative w-full flex items-center justify-center px-2 sm:px-4 pt-20">
       <div className="relative w-full px-4 pt-16 pb-0 sm:pb-20 rounded-xl sm:rounded-[60px] overflow-hidden">
-        {/* Layer Background */}
+        {/* Background Layer */}
         <div className="absolute inset-0 -z-20">
           <div className="h-[810px] bg-[linear-gradient(180deg,rgba(0,77,38,0)_70%,#004D26_100%)]"></div>
           <div className="h-full bg-[#004D26]"></div>
@@ -27,16 +31,15 @@ export default function Hero() {
             href="/peta"
             className="inline-flex items-center gap-2 bg-[#FE9100] hover:bg-[#da7e06] text-white px-6 py-4 rounded-2xl font-medium transition shadow-[0px_4px_8px_rgba(0,0,0,0.1),inset_0px_4px_4px_rgba(255,255,255,0.2),inset_0px_-4px_4px_rgba(0,0,0,0.1)]"
           >
-            <span>Lihat Peta </span>
+            <span>Lihat Peta</span>
             <ArrowRight size={28} strokeWidth={2} />
           </Link>
         </motion.div>
 
-        {/* Image tambahan */}
+        {/* Peta Leaflet */}
         <div className="mt-14 relative w-full max-w-7xl mx-auto px-0 sm:px-6">
-          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.8 }} className="relative">
-            <Image src="/assets/cover-peta.png" alt="Map Preview" width={1200} height={600} className="rounded-lg w-full" />
-            <div className="absolute inset-0 rounded-lg bg-[linear-gradient(180deg,rgba(0,77,38,0)_50%,#004D26_100%)]"></div>
+          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.8 }} className="relative rounded-lg overflow-hidden">
+            <MapView />
           </motion.div>
         </div>
       </div>
