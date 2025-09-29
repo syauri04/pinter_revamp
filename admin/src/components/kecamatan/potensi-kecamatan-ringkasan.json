@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_kecamatan_potensi_kecamatan_ringkasans",
+  "info": {
+    "displayName": "Potensi Kecamatan Ringkasan",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "ringkasan": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

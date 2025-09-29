@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_tentang_kami_misis",
+  "info": {
+    "displayName": "Misi",
+    "icon": "crown"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "PiTreasureChestDuotone",
+        "PiTimerDuotone",
+        "PiGlobeStandFill",
+        "PiThumbsUpDuotone",
+        "PiChartLineDuotone",
+        "PiArrowClockwiseDuotone",
+        "PiChatsCircleDuotone"
+      ]
+    },
+    "misi": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

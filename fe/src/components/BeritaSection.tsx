@@ -3,51 +3,10 @@
 import Image from "next/image";
 import { motion, Variants } from "motion/react";
 import Link from "next/link";
-
-interface NewsItem {
-  id: number;
-  category: string;
-  title: string;
-  date: string;
-  summary: string;
-  image: string;
-}
-
-// Data berita
-const news: NewsItem[] = [
-  {
-    id: 1,
-    category: "Regulasi",
-    title: "Peta Potensi Investasi Terpadu",
-    date: "14 Jul 2023",
-    summary: "Berdasarkan dalam rangka mewujudkan pelayanan prima di berbagai bidang yang terkait diharapkan...",
-    image: "/assets/berita1.jpg",
-  },
-  {
-    id: 2,
-    category: "Investasi",
-    title: "DPMPTSP PINTER",
-    date: "31 Jul 2023",
-    summary: "Berdasarkan kebijakan dimaksudkan menciptakan langkah strategis untuk percepatan pelayanan publik...",
-    image: "/assets/berita2.png",
-  },
-  {
-    id: 3,
-    category: "Layanan",
-    title: "Peta Potensi Investasi Terpadu",
-    date: "12 Jul 2023",
-    summary: "Informasi kebijakan dimaksudkan mewujudkan langkah strategis dalam percepatan pelayanan publik...",
-    image: "/assets/berita1.jpg",
-  },
-  {
-    id: 4,
-    category: "Regulasi",
-    title: "Peta Potensi Investasi Terpadu",
-    date: "21 Jul 2023",
-    summary: "Berdasarkan dalam rangka mewujudkan pelayanan prima diharapkan mampu mempercepat pencapaian...",
-    image: "/assets/berita2.png",
-  },
-];
+import { useEffect, useState } from "react";
+import { fetchBeritaForHome } from "@/services/berita";
+import { BeritaItem } from "@/types/berita";
+import { getStrapiMedia } from "@/utils/media";
 
 // Variants per row
 const rowVariants: Variants = {
@@ -66,8 +25,22 @@ const cardVariants: Variants = {
 };
 
 export default function BeritaSection() {
+  const [news, setNews] = useState<BeritaItem[]>([]);
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const data = await fetchBeritaForHome();
+        setNews(data);
+      } catch (err) {
+        console.error("Error fetching berita:", err);
+      }
+    }
+    load();
+  }, []);
+
   // Split berita menjadi row per 2 item
-  const rows: NewsItem[][] = [];
+  const rows: BeritaItem[][] = [];
   for (let i = 0; i < news.length; i += 2) {
     rows.push(news.slice(i, i + 2));
   }
@@ -82,38 +55,37 @@ export default function BeritaSection() {
       <div className="container max-w-7xl mx-auto relative px-4 xl:px-0 py-0 sm:py-24 pb-24 sm:pb-0 z-10">
         {/* Header */}
         <div className="flex justify-between items-center mb-14">
-          <h2 className="font-bold  text-[32px] sm:text-[56px] tracking-[-0.01em] leading-[100%] text-[#000000]">Berita Terkini</h2>
-          <a href="#" className="font-bold text-[20px] leading-[120%] text-[#00994B] underline">
+          <h2 className="font-bold text-[32px] sm:text-[56px] tracking-[-0.01em] leading-[100%] text-[#000000]">Berita Terkini</h2>
+          <Link href="/berita" className="font-bold text-[20px] leading-[120%] text-[#00994B] underline">
             Lihat Semua
-          </a>
+          </Link>
         </div>
 
         {/* Content */}
         <div className="flex flex-col md:flex-row gap-8">
           {/* Left summary */}
-          <div className="w-full md:w-1/3  order-1">
+          <div className="w-full md:w-1/3 order-1">
             <p className="font-medium text-[20px] leading-[120%] text-[#000000] opacity-[0.4]">Artikel terkait Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu (DPMPTSP) dan Aplikasi SPINTER.</p>
           </div>
 
           {/* Right news grid per row */}
-          <div className="w-full md:w-2/3  order-2 space-y-8">
+          <div className="w-full md:w-2/3 order-2 space-y-8">
             {rows.map((rowItems, rowIndex) => (
-              <motion.div
-                key={rowIndex}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-                variants={rowVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }} // animasi saat row terlihat
-              >
+              <motion.div key={rowIndex} className="grid grid-cols-1 sm:grid-cols-2 gap-8" variants={rowVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
                 {rowItems.map((item) => (
-                  <Link key={item.id} href={`/berita/${item.title}`} passHref>
-                    <motion.div variants={cardVariants} className="flex flex-col bg-transparent  rounded-[10px]">
-                      <Image src={item.image} alt={item.title} width={500} height={300} className="w-full h-[267px] object-cover rounded-md" />
-                      <span className="font-bold text-[#FE9100] leading-[100%] text-sm mt-5">{item.category}</span>
-                      <h3 className="text-2xl font-bold text-black leading-[120%] mt-3">{item.title}</h3>
-                      <span className="text-sm font-medium text-black opacity-[0.4] leading-[100%] mt-3">{item.date}</span>
-                      <p className="text-base font-medium text-black opacity-[0.4] leading-[120%] mt-3">{item.summary}</p>
+                  <Link key={item.id} href={`/berita/${item.slug}`} passHref>
+                    <motion.div variants={cardVariants} className="flex flex-col bg-transparent rounded-[10px]">
+                      {item.coverImage?.url && <Image src={getStrapiMedia(item.coverImage.url)} alt={item.title} width={500} height={300} className="w-full h-[267px] object-cover rounded-md" />}
+                      <span className="font-bold text-[#008BCC] leading-[100%] text-sm mt-5">{item.kategori?.kategori}</span>
+                      <h3 className="text-2xl font-bold text-black leading-[120%] mt-3 line-clamp-2">{item.title}</h3>
+                      <span className="text-sm font-medium text-black opacity-[0.4] leading-[100%] mt-3">
+                        {new Date(item.createdAt).toLocaleDateString("id-ID", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </span>
+                      <p className="text-base font-medium text-black opacity-[0.4] leading-[120%] mt-3 line-clamp-3">{item.ringkasan}</p>
                     </motion.div>
                   </Link>
                 ))}

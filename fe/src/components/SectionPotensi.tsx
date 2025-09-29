@@ -5,27 +5,21 @@ import React from "react";
 import { ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, TooltipProps, LabelList } from "recharts";
 import { motion, useInView, animate, useMotionValue } from "motion/react";
 import { useRef, useEffect, useState } from "react";
+import { SectionRealisasi, SectionTujuan } from "@/types/beranda";
+
+interface RealisasiProps {
+  realisasi: SectionRealisasi;
+}
+
+interface TujuanProps {
+  tujuan: SectionTujuan;
+}
+
+interface SectionPotensiProps extends RealisasiProps, TujuanProps {}
+
 // ---------- CONFIG ----------
-const COLOR_PMDN = "#00994B"; // PMDN
-const COLOR_PMA = "#FE9100"; // PMA
-
-// Source numbers (dummy data, bisa ganti dengan API)
-const PMA_VALUE = 8_274_598_071_194;
-const PMDN_VALUE = 14_632_961_355_632;
-const TOTAL = PMA_VALUE + PMDN_VALUE;
-
-const donutData = [
-  { name: "PMDN", value: PMDN_VALUE, color: COLOR_PMDN },
-  { name: "PMA", value: PMA_VALUE, color: COLOR_PMA },
-];
-
-const lineData = [
-  { year: 2025, target: 22.9 },
-  { year: 2026, target: 22.91 },
-  { year: 2027, target: 22.92 },
-  { year: 2028, target: 22.93 },
-  { year: 2029, target: 22.94 },
-];
+const COLOR_PMDN = "#00CC64"; // PMDN
+const COLOR_PMA = "#006632"; // PMA
 
 // ---------- UTILS ----------
 const nfmt = new Intl.NumberFormat("en-US");
@@ -91,7 +85,20 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 };
 
 // ---------- COMPONENT ----------
-export default function SectionPotensi() {
+export default function SectionPotensi({ realisasi, tujuan }: SectionPotensiProps) {
+  const { pma, pmdn, periodeRealisasi, sumber, title } = realisasi;
+  const TOTAL = pma + pmdn;
+
+  const lineData = tujuan.lineData.map((item) => ({
+    year: item.tahun,
+    target: item.investasi,
+  }));
+
+  const donutData = [
+    { name: "PMDN", value: pmdn, color: COLOR_PMDN },
+    { name: "PMA", value: pma, color: COLOR_PMA },
+  ];
+
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "0px" });
   // motion value
@@ -135,8 +142,8 @@ export default function SectionPotensi() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-10">
           {/* LEFT: Pie Chart */}
           <div>
-            <h2 className="text-2xl sm:text-[32px] font-bold tracking-[-0.01em] text-black leading-[100%]">Realisasi Investasi Kabupaten Bogor</h2>
-            <p className="text-base sm:text-[20px] tracking-[-0.01em] text-black leading-[100%] opacity-[0.4] mt-3.5">Januari s/d Desember 2024</p>
+            <h2 className="text-2xl sm:text-[32px] font-bold tracking-[-0.01em] text-black leading-[100%]">{title}</h2>
+            <p className="text-base sm:text-[20px] tracking-[-0.01em] text-black leading-[100%] opacity-[0.4] mt-3.5">{periodeRealisasi}</p>
 
             <div className="mt-6 rounded-2xl px-0 sm:px-6">
               <motion.div ref={ref} className="h-[400px] md:h-[420px] lg:h-[400px] w-full" initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: "easeOut" }}>
@@ -159,7 +166,7 @@ export default function SectionPotensi() {
                   <div>
                     <p className="text-base font-bold text-black tracking-[-0.01em]">PMA</p>
                     <p className="text-sm text-medium text-black opacity-[0.4] tracking-[-0.01em] -mt-0.5">Penanaman Modal Asing</p>
-                    <p className="text-xl sm:text-2xl font-bold text-black tracking-[-0.01em] mt-1">{formatRupiah(PMA_VALUE)}</p>
+                    <p className="text-xl sm:text-2xl font-bold text-black tracking-[-0.01em] mt-1">{formatRupiah(pma)}</p>
                   </div>
                 </div>
                 {/* PMDN */}
@@ -168,7 +175,7 @@ export default function SectionPotensi() {
                   <div>
                     <p className="text-base font-bold text-black tracking-[-0.01em]">PMDN</p>
                     <p className="text-sm text-medium text-black opacity-[0.4] tracking-[-0.01em] -mt-0.5">Penanaman Modal Dalam Negeri</p>
-                    <p className="text-xl sm:text-2xl font-bold text-black tracking-[-0.01em] mt-1">{formatRupiah(PMDN_VALUE)}</p>
+                    <p className="text-xl sm:text-2xl font-bold text-black tracking-[-0.01em] mt-1">{formatRupiah(pmdn)}</p>
                   </div>
                 </div>
                 <div className="pt-2 ">
@@ -176,7 +183,7 @@ export default function SectionPotensi() {
                   <p className="text-2xl sm:text-[32px] font-bold text-black tracking-[-0.01em]">{formatRupiah(TOTAL)}</p>
                 </div>
                 <div className="pt-4">
-                  <p className="text-sm text-medium text-black opacity-[0.4] tracking-[-0.01em]">Sumber: Data Perkembangan Realisasi Investasi PMA dan PMDN Periode Laporan Januari-Desember 2024, DPMPTSP Provinsi Jawa Barat</p>\
+                  <p className="text-sm text-medium text-black opacity-[0.4] tracking-[-0.01em]">Sumber: {sumber}</p>\
                 </div>
               </div>
             </div>
@@ -184,8 +191,8 @@ export default function SectionPotensi() {
 
           {/* RIGHT: Line chart */}
           <div>
-            <h2 className="text-2xl sm:text-[32px] font-bold tracking-[-0.01em] text-black leading-[100%]">Tujuan Perangkat Daerah DPMPTSP</h2>
-            <p className="text-base sm:text-[20px] tracking-[-0.01em] text-black leading-[100%] opacity-[0.4] mt-3.5">“Meningkatnya Perolehan Nilai Investasi”</p>
+            <h2 className="text-2xl sm:text-[32px] font-bold tracking-[-0.01em] text-black leading-[100%]">{tujuan.title}</h2>
+            <p className="text-base sm:text-[20px] tracking-[-0.01em] text-black leading-[100%] opacity-[0.4] mt-3.5">“{tujuan.tagline}”</p>
 
             <div className="mt-6 p-0 md:p-6">
               {/* Tahun pills */}
@@ -193,7 +200,7 @@ export default function SectionPotensi() {
                 <span className="shrink-0">Tahun</span>
                 <div className="flex gap-1 xs:gap-2.5 xl:gap-5">
                   {lineData.map((d) => (
-                    <span key={d.year} className="inline-flex items-center text-white font-bold text-sm xl:text-xl bg-[#FE9100] justify-center rounded-full px-2 xs:px-3 sm:px-4 py-[3px] xs:py-[4px] sm:py-[8px]">
+                    <span key={d.year} className="inline-flex items-center text-white font-bold text-sm xl:text-xl bg-[#002333] justify-center rounded-full px-2 xs:px-3 sm:px-4 py-[3px] xs:py-[4px] sm:py-[8px]">
                       {d.year}
                     </span>
                   ))}
@@ -251,7 +258,7 @@ export default function SectionPotensi() {
                             return (
                               <g>
                                 {/* Nilai di bawah titik (hijau) */}
-                                <text x={x} y={Number(y) + (PILL_H / 2 + GAP)} textAnchor="middle" fill="#00994B" fontSize={12} fontWeight={600}>
+                                <text x={x} y={Number(y) + (PILL_H / 2 + GAP)} textAnchor="middle" fill="#008BCC" fontSize={12} fontWeight={600}>
                                   {Number(value).toFixed(2)} T
                                 </text>
                               </g>
@@ -268,9 +275,16 @@ export default function SectionPotensi() {
 
               {/* Logos */}
               <div className="mt-18 flex items-center gap-6">
-                <Image src="/assets/logo-kab.png" alt="Bogor" width={64} height={74} className="h-[54px] xs:h-[74px] w-auto object-contain" />
-                <Image src="/assets/logo-dpmptsp.png" alt="DPMPTSP" width={160} height={87} className="h-[57px] xs:h-[87px] w-auto object-contain" />
-                <Image src="/assets/logo-mpp.png" alt="MPP" width={128} height={85} className="h-[55px] xs:h-[85px] w-auto object-contain" />
+                {tujuan.listLogo.map((logo) => (
+                  <Image
+                    key={logo.id}
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${logo.url}`} // getinStrapi
+                    alt={logo.name || logo.name}
+                    width={128}
+                    height={74}
+                    className="h-20 w-auto object-contain"
+                  />
+                ))}
               </div>
             </div>
           </div>

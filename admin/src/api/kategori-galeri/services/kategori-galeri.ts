@@ -1,0 +1,7 @@
+/**
+ * kategori-galeri service
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreService('api::kategori-galeri.kategori-galeri');

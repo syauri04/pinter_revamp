@@ -62,7 +62,7 @@ export default function Navbar() {
               {menus.map((menu) => {
                 const isActive = pathname === menu.href;
                 return (
-                  <Link key={menu.href} href={menu.href} className={`transition ${isActive ? "text-[#00994B] font-bold" : "text-black opacity-40 font-medium hover:text-[#00994B]"}`}>
+                  <Link key={menu.href} href={menu.href} className={`transition ${isActive ? "text-[#E81717] font-bold" : "text-black opacity-40 font-medium hover:text-[#E81717]"}`}>
                     {menu.name}
                   </Link>
                 );
@@ -72,15 +72,15 @@ export default function Navbar() {
 
           {/* Tombol Lihat Peta */}
           {isPetaRoot ? (
-            <Link href="/" className="border border-[#00994B] hover:bg-[#00994B] hover:text-white text-[#00994B] px-4 py-3 rounded-2xl font-bold transition">
+            <Link href="/" className="border border-[#E81717] hover:bg-[#E81717] hover:text-white text-[#E81717] px-4 py-3 rounded-2xl font-bold transition">
               Beranda
             </Link>
           ) : isPetaSlug ? (
-            <Link href="/peta" className="border border-[#00994B] hover:bg-[#00994B] hover:text-white text-[#00994B] px-4 py-3 rounded-2xl font-bold transition">
+            <Link href="/peta" className="border border-[#E81717] hover:bg-[#E81717] hover:text-white text-[#E81717] px-4 py-3 rounded-2xl font-bold transition">
               Kembali ke Peta
             </Link>
           ) : (
-            <Link href="/peta" className="bg-[#004D26] hover:bg-[#02331a] text-white px-4 py-3 rounded-2xl font-bold transition">
+            <Link href="/peta" className="bg-[#002333] hover:bg-[#024b6c] text-white px-4 py-3 rounded-2xl font-bold transition">
               Peta Potensi
             </Link>
           )}
@@ -98,11 +98,11 @@ export default function Navbar() {
         {/* Mobile Hamburger */}
 
         {isPetaRoot ? (
-          <Link href="/" onClick={() => setIsOpen(false)} className="lg:hidden border border-[#00994B] hover:bg-[#00994B] hover:text-white text-[#00994B] px-4 sm:px-6 py-3 rounded-2xl font-bold transition">
+          <Link href="/" onClick={() => setIsOpen(false)} className="lg:hidden border border-[#E81717] hover:bg-[#E81717] hover:text-white text-[#E81717] px-4 sm:px-6 py-3 rounded-2xl font-bold transition">
             Beranda
           </Link>
         ) : isPetaSlug ? (
-          <Link href="/peta" onClick={() => setIsOpen(false)} className="lg:hidden border border-[#00994B] hover:bg-[#00994B] hover:text-white text-[#00994B] px-6 py-3 rounded-2xl font-bold transition">
+          <Link href="/peta" onClick={() => setIsOpen(false)} className="lg:hidden border border-[#E81717] hover:bg-[#E81717] hover:text-white text-[#E81717] px-6 py-3 rounded-2xl font-bold transition">
             Peta
           </Link>
         ) : (
@@ -124,14 +124,14 @@ export default function Navbar() {
         {menus.map((menu) => {
           const isActive = pathname === menu.href;
           return (
-            <Link key={menu.href} href={menu.href} onClick={() => setIsOpen(false)} className={`text-2xl transition ${isActive ? "text-[#00994B] font-bold" : "text-black opacity-70 hover:text-[#00994B]"}`}>
+            <Link key={menu.href} href={menu.href} onClick={() => setIsOpen(false)} className={`text-2xl transition ${isActive ? "text-[#E81717] font-bold" : "text-black opacity-70 hover:text-[#E81717]"}`}>
               {menu.name}
             </Link>
           );
         })}
 
         {/* Tombol Lihat Peta */}
-        <Link href="/peta" onClick={() => setIsOpen(false)} className="bg-[#004D26] hover:bg-[#02331a] text-white px-6 py-3 rounded-2xl font-bold transition">
+        <Link href="/peta" onClick={() => setIsOpen(false)} className="bg-[#002333] hover:bg-[#024b6c] text-white px-6 py-3 rounded-2xl font-bold transition">
           Peta Potensi
         </Link>
 

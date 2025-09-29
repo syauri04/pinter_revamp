@@ -5,16 +5,12 @@ import CardPotensi from "@/components/CardPotensi";
 import Hero from "@/components/Hero";
 import SectionPotensi from "@/components/SectionPotensi";
 import { motion, Variants } from "motion/react";
-
-const data = [
-  { title: "Pariwisata", icon: "/assets/icon-parawisata.png" },
-  { title: "Pertanian", icon: "/assets/icon-pertanian.png" },
-  { title: "Pendidikan", icon: "/assets/icon-pendidikan.png" },
-  { title: "Perdagangan", icon: "/assets/icon-perdagangan.png" },
-  { title: "Kehutanan", icon: "/assets/icon-kehutanan.png" },
-  { title: "Pekerjaan Umum", icon: "/assets/icon-pekerjaan-umum.png" },
-  // bisa ditambah terus...
-];
+import { fetchBeranda, fetchPotensiInvestasi } from "@/services/beranda";
+import { useState, useEffect } from "react";
+import { BerandaData } from "@/types/beranda";
+import { PotensiInvestasi } from "@/types/potensi";
+import * as PiIcons from "react-icons/pi";
+import SkeletonHome from "@/components/SkeletonHome";
 
 const containerVariants = {
   hidden: {},
@@ -37,25 +33,37 @@ const cardVariants: Variants = {
   },
 };
 export default function Home() {
+  const [cardPotensi, setCardPotensi] = useState<PotensiInvestasi[]>([]);
+
+  useEffect(() => {
+    fetchPotensiInvestasi().then(setCardPotensi);
+  }, []);
+
+  const [beranda, setBeranda] = useState<BerandaData | null>(null); // <-- beri tipe
+
+  useEffect(() => {
+    fetchBeranda().then((data) => {
+      // console.log("beranda", data);
+      setBeranda(data);
+    });
+  }, []);
+
+  if (!beranda) return <SkeletonHome />;
   return (
     <main>
-      <Hero />
+      <Hero data={beranda.sectionHero} />
       <section className="relative w-full bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-4 xl:px-0 py-16 sm:py-24">
           <div>
-            <h1 className="font-bold text-[32px] sm:text-[56px] tracking-[-0.01em] leading-[100%] text-[#000000]">Peta Potensi Investasi Terpadu (PINTER)</h1>
+            <h1 className="font-bold text-[32px] sm:text-[56px] tracking-[-0.01em] leading-[100%] text-[#000000]">{beranda.sectionPotensi.title} </h1>
           </div>
           <div>
-            <p className="font-medium text-base sm:text-[20px] leading-[120%] text-[#000000] opacity-[0.4]">
-              Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu (DPMPTSP) menghadirkan aplikasi SIPINTER sebagai platform digital yang efektif dan efisien untuk memperkuat komunikasi antara pemerintah, investor, dan masyarakat,
-              menyediakan informasi lengkap terkait potensi dan peluang investasi khususnya di Kabupaten Bogor, serta mendukung terciptanya iklim investasi yang kondusif demi mendorong pertumbuhan ekonomi daerah dan kesejahteraan
-              masyarakat.
-            </p>
+            <p className="font-medium text-base sm:text-[20px] leading-[120%] text-[#000000] opacity-[0.4]">{beranda.sectionPotensi.ringkasan}</p>
           </div>
         </div>
       </section>
 
-      <SectionPotensi />
+      <SectionPotensi realisasi={beranda.sectionRealisasi} tujuan={beranda.sectionTujuan} />
 
       <section className="relative w-full">
         <div className="max-w-7xl mx-auto px-4 xl:px-0 py-24">
@@ -68,23 +76,18 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }} // muncul hanya sekali saat discroll
           >
-            {data.map((item, index) => {
-              // hitung baris & col → tentukan warna
-              const row = Math.floor(index / 4); // row ke berapa
-              const col = index % 4; // posisi di dalam row
-              let variant: "orange" | "green";
+            {cardPotensi.map((item, index) => {
+              const row = Math.floor(index / 4); // baris ke berapa
+              const col = index % 4; // posisi di dalam baris
 
-              if (row % 2 === 0) {
-                // row genap (0,2,4) mulai dari orange
-                variant = col % 2 === 0 ? "orange" : "green";
-              } else {
-                // row ganjil (1,3,5) mulai dari green
-                variant = col % 2 === 0 ? "green" : "orange";
-              }
+              const variant: "orange" | "green" = row % 2 === 0 ? (col % 2 === 0 ? "orange" : "green") : col % 2 === 0 ? "green" : "orange";
+
+              // Mapping icon string ke React Icon
+              const IconComponent = PiIcons[item.icon as keyof typeof PiIcons];
 
               return (
-                <motion.div key={index} variants={cardVariants}>
-                  <CardPotensi title={item.title} icon={item.icon} variant={variant} />;
+                <motion.div key={item.id} variants={cardVariants}>
+                  <CardPotensi title={item.title} icon={IconComponent ? <IconComponent className="text-white text-5xl" /> : null} variant={variant} />
                 </motion.div>
               );
             })}

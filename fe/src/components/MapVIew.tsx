@@ -99,7 +99,7 @@ export default function MapView() {
   }, []);
 
   return (
-    <MapContainer center={[-6.6, 106.8]} zoom={10} style={{ height: "853px", width: "100%" }}>
+    <MapContainer center={[-6.6, 106.8]} zoom={10} style={{ height: "553px", width: "100%" }}>
       <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {geoData && (
         <GeoJSON

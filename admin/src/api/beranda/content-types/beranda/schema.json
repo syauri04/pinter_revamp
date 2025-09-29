@@ -1,0 +1,59 @@
+{
+  "kind": "singleType",
+  "collectionName": "berandas",
+  "info": {
+    "singularName": "beranda",
+    "pluralName": "berandas",
+    "displayName": "Beranda"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "sectionHero": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "beranda.section-hero",
+      "repeatable": false
+    },
+    "sectionPotensi": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "beranda.section-potensi",
+      "repeatable": false
+    },
+    "sectionRealisasi": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "beranda.section-realisasi",
+      "repeatable": false
+    },
+    "sectionTujuan": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "beranda.section-tujuan",
+      "repeatable": false
+    }
+  }
+}

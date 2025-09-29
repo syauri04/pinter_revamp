@@ -1,0 +1,19 @@
+{
+    "collectionName": "components_beranda_line_data",
+    "info": {
+        "displayName": "Line Data",
+        "icon": "priceTag"
+    },
+    "options": {},
+    "attributes": {
+        "tahun": {
+            "type": "biginteger",
+            "required": true
+        },
+        "investasi": {
+            "type": "decimal",
+            "required": true
+        }
+    },
+    "config": {}
+}

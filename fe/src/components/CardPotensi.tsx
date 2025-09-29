@@ -1,11 +1,10 @@
 // components/InvestmentCard.tsx
 "use client";
-
-import Image from "next/image";
+import { ReactNode } from "react";
 
 type InvestmentCardProps = {
   title: string;
-  icon: string; // path image (png/svg)
+  icon: ReactNode;
   variant: "orange" | "green";
 };
 
@@ -17,10 +16,10 @@ const colors = {
     bgcolor: "bg-[#FE91000D]",
   },
   green: {
-    border: "border-[#00994B]",
-    text: "text-[#00994B]",
-    circle: "bg-[#00994B]",
-    bgcolor: "bg-[#00994B0D]",
+    border: "border-[#008BCC]",
+    text: "text-[#008BCC]",
+    circle: "bg-[#008BCC]",
+    bgcolor: "bg-[#008BCC0D]",
   },
 };
 
@@ -34,9 +33,7 @@ export default function CardPotensi({ title, icon, variant }: InvestmentCardProp
 
       {/* Icon */}
       <div className="absolute bottom-4 left-4">
-        <div className={`w-[72px] h-[72px] flex items-center justify-center rounded-full ${color.circle}`}>
-          <Image src={icon} alt={title} width={48} height={48} />
-        </div>
+        <div className={`w-[72px] h-[72px] flex items-center justify-center rounded-full ${color.circle}`}>{icon}</div>
       </div>
     </div>
   );

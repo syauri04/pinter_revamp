@@ -1,0 +1,56 @@
+{
+  "kind": "singleType",
+  "collectionName": "tentang_kamis",
+  "info": {
+    "singularName": "tentang-kami",
+    "pluralName": "tentang-kamis",
+    "displayName": "Tentang Kami"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "ringkasan": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "visi": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "contentMisi": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "tentang-kami.misi",
+      "repeatable": true
+    }
+  }
+}

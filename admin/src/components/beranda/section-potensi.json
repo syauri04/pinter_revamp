@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_beranda_section_potensis",
+  "info": {
+    "displayName": "Section Potensi",
+    "icon": "briefcase"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "ringkasan": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "config": {}
+}

@@ -1,84 +1,60 @@
 "use client";
 
-import { PiBookOpenTextBold, PiBuildingsBold, PiTreeBold, PiShoppingCartBold, PiSunHorizonBold, PiPlantBold } from "react-icons/pi";
 import { ReactNode } from "react";
+import * as PiIcons from "react-icons/pi";
+import type { IconType } from "react-icons";
 
-type CardItem = {
+interface PotensiRingkasan {
+  id: number;
+  ringkasan: string;
+}
+
+interface PotensiInvestasi {
   id: number;
   title: string;
-  icon: ReactNode;
-  content: string[] | string;
-};
+  icon: string;
+}
 
-const cardData: CardItem[] = [
-  {
-    id: 1,
-    title: "Pendidikan",
-    icon: <PiBookOpenTextBold className="text-orange-500 text-2xl" />,
-    content: [
-      "Pendidikan anak usia dini dan taman kanak-kanak.",
-      "Pendidikan terpadu dari jenjang TK, SD, SLTP dan SLTA.",
-      "Pendidikan non formal (khusus keahlian dan keterampilan) termasuk PAUD (bertemakan Khusus seperti alam).",
-      "Pendidikan sekolah menengah kejuruan untuk mencetak tenaga terampil dibidang teknik pertanian dan budidaya pertanian.",
-    ],
-  },
-  {
-    id: 2,
-    title: "Pekerjaan Umum",
-    icon: <PiBuildingsBold className="text-orange-500 text-2xl" />,
-    content: [
-      "Pembangunan infrastruktur kompleks di destinasi wisata sekitar sumber daya air seperti danau, situ, curug, dan jenis objek pariwisata lainnya.",
-      "Pengelolaan dan pendistribusian air bersih untuk rumah tangga dan bisnis di daerah-daerah di luar pusat kegiatan ekonomi kabupaten.",
-      "Pengelolaan sampah rumah tangga dan limbah cair.",
-    ],
-  },
-  {
-    id: 3,
-    title: "Kehutanan",
-    icon: <PiTreeBold className="text-orange-500 text-2xl" />,
-    content: ["Komoditi non kayu yaitu burung sriti dan madu hutan.", "Komoditi kayu yaitu mahoni, jabon, albazia dan afrika."],
-  },
-  {
-    id: 4,
-    title: "Perdagangan",
-    icon: <PiShoppingCartBold className="text-orange-500 text-2xl" />,
-    content: "Penataan dan peningkatan pasar daerah dan pasar desa, serta kawasan perdagangan lainnya.",
-  },
-  {
-    id: 5,
-    title: "Pariwisata",
-    icon: <PiSunHorizonBold className="text-orange-500 text-2xl" />,
-    content: "Pengembangan destinasi wisata kreatif.",
-  },
-  {
-    id: 6,
-    title: "Pertanian",
-    icon: <PiPlantBold className="text-orange-500 text-2xl" />,
-    content: ["Tanaman pangan dengan komoditi ubi kayu.", "Sayur-sayuran dengan komoditi cabai rawit dan cabai besar.", "Tanaman obat-obatan (Biofarmaka) dengan jenis tanaman lengkuas/laos, jahe, kunyit, kencur, dan kapulaga."],
-  },
-];
+export interface PotensiKecamatan {
+  id: number;
+  potensi_investasi: PotensiInvestasi;
+  potensiRingkasan: PotensiRingkasan[];
+}
 
-export default function CardGridKec() {
+interface CardGridKecProps {
+  potensi: PotensiKecamatan[];
+}
+
+// Fungsi untuk mapping string ke icon react-icons/pi
+function getIconComponent(name: string): ReactNode {
+  const Icon = (PiIcons as Record<string, IconType>)[name];
+  if (!Icon) return <span className="w-8 h-8 bg-gray-300 rounded" />;
+  return <Icon className="text-orange-500 text-2xl" />;
+}
+
+export default function CardGridKec({ potensi }: CardGridKecProps) {
+  if (!potensi || potensi.length === 0) return null;
+
   return (
     <div className="max-w-7xl mx-auto px-0">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 space-y-8">
-        {cardData.map((card) => (
-          <div key={card.id} className="bg-white rounded-[20px] shadow-lg p-6 flex flex-col">
+        {potensi.map((item) => (
+          <div key={item.id} className="bg-white rounded-[20px] shadow-lg p-6 flex flex-col">
             {/* Header: Icon + Title */}
             <div className="flex items-center gap-4 mb-8">
-              {card.icon}
-              <h3 className="font-bold text-xl leading-[100%] text-black">{card.title}</h3>
+              {getIconComponent(item.potensi_investasi.icon)}
+              <h3 className="font-bold text-xl leading-[100%] text-black">{item.potensi_investasi.title}</h3>
             </div>
 
-            {/* Content: bisa list atau paragraf */}
-            {Array.isArray(card.content) ? (
+            {/* Content */}
+            {item.potensiRingkasan.length > 0 ? (
               <ul className="list-disc pl-5 space-y-2 text-black opacity-[0.4] text-base leading-[120%]">
-                {card.content.map((item, i) => (
-                  <li key={i}>{item}</li>
+                {item.potensiRingkasan.map((r) => (
+                  <li key={r.id}>{r.ringkasan}</li>
                 ))}
               </ul>
             ) : (
-              <p className="text-black opacity-[0.4] text-base leading-[120%]">{card.content}</p>
+              <p className="text-black opacity-[0.4] text-base leading-[120%]">-</p>
             )}
           </div>
         ))}

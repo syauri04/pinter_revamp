@@ -1,0 +1,21 @@
+{
+    "collectionName": "components_kecamatan_potensi_kecamatans",
+    "info": {
+        "displayName": "Potensi Kecamatan",
+        "icon": "paperPlane"
+    },
+    "options": {},
+    "attributes": {
+        "potensi_investasi": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::potensi-investasi.potensi-investasi"
+        },
+        "potensiRingkasan": {
+            "type": "component",
+            "component": "kecamatan.potensi-kecamatan-ringkasan",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_kecamatan_gallery_kecamatans",
+  "info": {
+    "displayName": "Gallery Kecamatan",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "youtubeUrl": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

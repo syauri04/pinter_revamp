@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_beranda_section_realisasis",
+  "info": {
+    "displayName": "Section Realisasi",
+    "icon": "chartPie"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "periodeRealisasi": {
+      "type": "string",
+      "required": true
+    },
+    "pma": {
+      "type": "biginteger",
+      "required": true
+    },
+    "pmdn": {
+      "type": "biginteger",
+      "required": true
+    },
+    "sumber": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "config": {}
+}

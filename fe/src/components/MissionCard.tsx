@@ -50,7 +50,7 @@ export default function MissionCard({ missions }: MissionSectionProps) {
           viewport={{ once: true, amount: 0.2 }} // animasi saat row terlihat
         >
           {row.map((mission) => (
-            <motion.div key={mission.id} variants={cardVariants} className="border border-[#00994B] rounded-[20px] p-6 flex flex-col">
+            <motion.div key={mission.id} variants={cardVariants} className="border border-[#002333] rounded-[20px] p-6 flex flex-col">
               <div className="mb-24">{mission.icon}</div>
               <p className="text-[20px] font-bold leading-[120%] text-black">{mission.description}</p>
             </motion.div>

@@ -1,0 +1,81 @@
+{
+    "kind": "collectionType",
+    "collectionName": "galeris",
+    "info": {
+        "singularName": "galeri",
+        "pluralName": "galeris",
+        "displayName": "Galeri"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {
+        "i18n": {
+            "localized": true
+        }
+    },
+    "attributes": {
+        "title": {
+            "type": "string",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "required": true
+        },
+        "slug": {
+            "type": "uid",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "targetField": "title"
+        },
+        "kategori_galeri": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::kategori-galeri.kategori-galeri"
+        },
+        "ringkasan": {
+            "type": "text",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "featuredImage": {
+            "type": "media",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "multiple": false,
+            "required": true,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        },
+        "galeriImage": {
+            "type": "media",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "multiple": true,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        }
+    }
+}

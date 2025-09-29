@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_beranda_section_heroes",
+  "info": {
+    "displayName": "Section Hero",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "ringkasan": {
+      "type": "text",
+      "required": true
+    },
+    "backgroundHero": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

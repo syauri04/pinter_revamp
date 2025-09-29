@@ -1,0 +1,34 @@
+{
+    "collectionName": "components_beranda_section_tujuans",
+    "info": {
+        "displayName": "Section Tujuan",
+        "icon": "clock"
+    },
+    "options": {},
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "tagline": {
+            "type": "string",
+            "required": true
+        },
+        "lineData": {
+            "type": "component",
+            "component": "beranda.line-data",
+            "repeatable": true
+        },
+        "listLogo": {
+            "type": "media",
+            "multiple": true,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        }
+    },
+    "config": {}
+}

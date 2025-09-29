@@ -1,0 +1,37 @@
+{
+    "kind": "collectionType",
+    "collectionName": "kategori_galeris",
+    "info": {
+        "singularName": "kategori-galeri",
+        "pluralName": "kategori-galeris",
+        "displayName": "Kategori Galeri"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {
+        "i18n": {
+            "localized": true
+        }
+    },
+    "attributes": {
+        "kategori": {
+            "type": "string",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "required": true
+        },
+        "slug": {
+            "type": "uid",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "targetField": "kategori"
+        }
+    }
+}

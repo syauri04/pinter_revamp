@@ -1,0 +1,76 @@
+{
+    "kind": "collectionType",
+    "collectionName": "beritas",
+    "info": {
+        "singularName": "berita",
+        "pluralName": "beritas",
+        "displayName": "Berita"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {
+        "i18n": {
+            "localized": true
+        }
+    },
+    "attributes": {
+        "title": {
+            "type": "string",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "required": true
+        },
+        "slug": {
+            "type": "uid",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "targetField": "title",
+            "required": true
+        },
+        "kategori_berita": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::kategori-berita.kategori-berita"
+        },
+        "ringkasan": {
+            "type": "text",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "required": true
+        },
+        "coverImage": {
+            "type": "media",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "multiple": false,
+            "required": true,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        },
+        "content": {
+            "type": "blocks",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        }
+    }
+}
