@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useEffect, useRef } from "react";
 import L, { PathOptions } from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -22,7 +23,7 @@ interface ZonaProperties {
   TipeFasdik?: string | null;
   TipeFaskes?: string | null;
   source_layer?: string | null;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export default function Map({ showPolaRuang, kecamatanLayers }: MapProps) {
@@ -97,7 +98,7 @@ export default function Map({ showPolaRuang, kecamatanLayers }: MapProps) {
   // create icons only once
   const iconsRef = useRef<Record<string, L.DivIcon | null> | null>(null);
   if (!iconsRef.current) {
-    const createDivIcon = (element: JSX.Element, color = "#000") =>
+    const createDivIcon = (element: React.ReactNode, color = "#000") =>
       L.divIcon({
         className: "custom-react-icon",
         html: ReactDOMServer.renderToString(<div style={{ fontSize: "30px", color }}>{element}</div>),
@@ -118,7 +119,7 @@ export default function Map({ showPolaRuang, kecamatanLayers }: MapProps) {
   }
 
   // Logic pilih icon sesuai property
-  const getCustomDivIcon = (props: any): L.DivIcon | null => {
+  const getCustomDivIcon = (props: { source_layer: string }): L.DivIcon | null => {
     if (!props || !props.source_layer) return null;
 
     const layer = props.source_layer.toLowerCase();
@@ -219,8 +220,9 @@ export default function Map({ showPolaRuang, kecamatanLayers }: MapProps) {
             },
         pointToLayer: (feature, latlng) => {
           // cek apakah perlu jadi icon React
-          const props = (feature && (feature.properties as any)) || {};
-          const divIcon = getCustomDivIcon(props);
+
+          const props = (feature && (feature.properties as ZonaProperties)) || {};
+          const divIcon = getCustomDivIcon({ source_layer: props.source_layer ?? "" });
           if (divIcon) {
             return L.marker(latlng, { icon: divIcon });
           }
@@ -258,8 +260,6 @@ export default function Map({ showPolaRuang, kecamatanLayers }: MapProps) {
         Promise.all([fetch("/data/CIAMPEA_POLYGONNEW.geojson").then((res) => res.json()), fetch("/data/CIAMPEA_POINTSNEW.geojson").then((res) => res.json())])
           .then(([polygonData, pointData]) => {
             // debug logs (cek di browser console)
-            console.log("Polygon data:", polygonData);
-            console.log("Point data:", pointData);
 
             const polyBounds = addLayerAndGetBounds(polygonData);
             const pointBounds = addLayerAndGetBounds(pointData);

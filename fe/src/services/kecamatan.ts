@@ -52,13 +52,13 @@ export interface Kecamatan {
 
 export async function fetchKecamatans(): Promise<Kecamatan[]> {
   const res = await fetchFromStrapi<{ data: Kecamatan[] }>("/kecamatans?populate[potensiKecamatan][populate]=*");
-  console.log("fetchdata", res);
+
   return res.data;
 }
 
 export async function fetchKecamatanBySlug(slug: string): Promise<Kecamatan | null> {
   const res = await fetchFromStrapi<{ data: Kecamatan[] }>(`/kecamatans?filters[slug][$eq]=${slug}&populate[galleryKecamatan][populate]=*&populate[potensiKecamatan][populate]=*`);
-  console.log("res", res);
+
   if (!res.data || res.data.length === 0) return null;
   return res.data[0];
 }

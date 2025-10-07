@@ -6,7 +6,6 @@ export async function fetchBeranda(): Promise<BerandaData> {
   const res = await fetchFromStrapi<StrapiBerandaResponse>("/beranda?populate[sectionHero][populate]=*&populate[sectionPotensi][populate]=*&populate[sectionRealisasi][populate]=*&populate[sectionTujuan][populate]=*");
 
   const data = res.data;
-  // console.log("data", data);
 
   if (!data) {
     throw new Error("Beranda data not found");
