@@ -57,8 +57,10 @@ export interface BeritaItem {
   kategori_berita?: KategoriBerita | null;
   content?: RichTextBlock[];
   kategori: {
+    id: number;
+    slug: string;
     kategori: string;
-  };
+  } | null;
 }
 
 export interface StrapiBeritaResponse {
