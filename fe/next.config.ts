@@ -4,9 +4,9 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "fepinter.hijrstudio.com",
-        port: "",
+        protocol: "http",
+        hostname: "localhost",
+        port: "1337",
         pathname: "/uploads/**",
       },
     ],
@@ -14,3 +14,13 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// FOR SERVER
+// root@pinter:~/project/pinter_revamp/fe# cat next.config.ts
+// const nextConfig = {
+//   images: {
+//     unoptimized: true,
+//   },
+// };
+
+// export default nextConfig;
