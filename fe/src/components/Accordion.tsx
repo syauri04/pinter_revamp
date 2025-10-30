@@ -76,7 +76,7 @@ export default function Accordion({ deskripsi, potensiKecamatan }: AccordionProp
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="divide-y px-4 pb-3 max-h-[500px] overflow-y-auto custom-scroll"
+              className="divide-y px-4 pb-3 max-h-[420px] xl:max-h-[500px] overflow-y-auto custom-scroll"
             >
               {potensiKecamatan.map((item) => (
                 <div key={item.id} className="py-3">

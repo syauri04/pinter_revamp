@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Rethink_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ClientWrapper from "@/components/ClientWrapper";
 
 const rethinkSans = Rethink_Sans({
@@ -12,7 +10,7 @@ const rethinkSans = Rethink_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PINTER",
+  title: "PINTER - PETA POTENSI INVESTASI TERPADU",
   description: "Peta Potensi Investasi Terpadu",
 };
 

@@ -143,7 +143,7 @@ export default function PetaPage() {
             )}
 
             {/* Bagian Bawah */}
-            <div className="space-y-4 mb-6">
+            <div className="space-y-4 mb-6 overflow-y-auto custom-scroll">
               <h2 className="text-base font-bold leading-[100%] text-black mb-6">Peta Wilayah Perancangan</h2>
 
               {/* Toggle Kecamatan */}
