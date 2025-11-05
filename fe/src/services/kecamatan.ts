@@ -51,7 +51,7 @@ export interface Kecamatan {
 }
 
 export async function fetchKecamatans(): Promise<Kecamatan[]> {
-  const res = await fetchFromStrapi<{ data: Kecamatan[] }>("/kecamatans?populate[potensiKecamatan][populate]=*");
+  const res = await fetchFromStrapi<{ data: Kecamatan[] }>("/kecamatans?populate[potensiKecamatan][populate]=*&pagination[page]=1&pagination[pageSize]=45");
 
   return res.data;
 }
