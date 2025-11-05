@@ -276,7 +276,7 @@ export default function Map({ showPolaRuang, kecamatanLayers }: MapProps) {
           })
           .catch((err) => console.error("Error loading CIAMPEA geojson:", err));
       } else {
-        const file = `/data/${nama.toUpperCase().replace(/\s+/g, "_")}.geojson`;
+        const file = `/data/${nama.toUpperCase().replace(/\s+/g, "-")}.geojson`;
         // console.log("file", file);
         fetch(file)
           .then((res) => res.json())
