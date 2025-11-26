@@ -58,3 +58,21 @@ body {
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.4);
 }
+
+.filter-btn {
+  padding: 6px 10px;
+  background: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  font-size: 11px;
+  border-radius: 3px;
+}
+
+.filter-btn:hover {
+  background: #e2e2e2;
+}
+
+.filter-btn.active {
+  background: #002333;
+  color: white;
+}
