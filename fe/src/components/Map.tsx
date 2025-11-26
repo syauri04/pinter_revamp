@@ -177,12 +177,16 @@ export default function Map({ showPolaRuang, kecamatanLayers }: MapProps) {
       (feature.properties &&
         (feature.properties.KECAMATAN || feature.properties.KECAMATAN)) ||
       "Kecamatan";
+
     const popupHtml = `
       <div class="p-3 max-w-xs text-center">
         <h3 class="text-lg font-bold text-black mb-2">KEC. ${namaKecamatan}</h3>
-        <a href="/peta/${String(
-          namaKecamatan
-        ).toLowerCase()}" class="bg-orange-500 text-white px-3 py-1 rounded" style="color: #FFFFFF !important">Detail</a>
+        <a href="/peta/${String(namaKecamatan)
+          .toLowerCase()
+          .replace(
+            /\s+/g,
+            "-"
+          )}" class="bg-orange-500 text-white px-3 py-1 rounded" style="color: #FFFFFF !important">Detail</a>
       </div>
     `;
     layer.bindPopup(popupHtml);
