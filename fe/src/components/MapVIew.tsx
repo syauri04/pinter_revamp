@@ -146,7 +146,7 @@ export default function MapView() {
       pola: "/data/Pola_Ruang_2.geojson",
       ksd: "/data/KSD.geojson",
       krb: "/data/KRB.geojson",
-      tnk: "/data/Tanah_Kosong.geojson",
+      tnk: "/data/Tanah_Kosong_2.geojson",
     };
 
     fetch(fileMap[activeLayer], { cache: "no-store" })
@@ -304,7 +304,7 @@ export default function MapView() {
 
               return {
                 fillColor: getColor(feature.properties, activeLayer),
-                weight: 0.5,
+                weight: 0.4,
                 color: "white",
                 fillOpacity: 0.7,
               };

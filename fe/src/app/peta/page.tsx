@@ -126,8 +126,6 @@ export default function PetaPage() {
   const kabupaten = data.find((d) => d.cat === "Kabupaten");
   const kecamatanList = data.filter((d) => d.cat === "Kecamatan");
 
-  console.log("activeAreaData", activeAreaData);
-
   return (
     <div className="fixed w-screen h-screen overflow-hidden flex">
       {/* LEFT SIDEBAR */}

@@ -158,10 +158,9 @@ export default function Map({ showPolaRuang, kecamatanLayers }: MapProps) {
       "";
     return {
       fillColor: getColor(feature?.properties ?? {}, activeLayer),
-      weight: 2,
+      weight: 0.4,
       opacity: 1,
       color: "white",
-      dashArray: "2",
       fillOpacity: 0.7,
     };
   };
@@ -358,13 +357,13 @@ export default function Map({ showPolaRuang, kecamatanLayers }: MapProps) {
       }/> Kesehatan</label><br/>
       <label><input type="checkbox" data-layer="transportasi" ${
         showTransportasi ? "checked" : ""
-      }/> Transportasi</label><br/>
+      }/> Prasarana Transportasi</label><br/>
       <label><input type="checkbox" data-layer="energi" ${
         showEnergi ? "checked" : ""
-      }/> Energi</label><br/>
+      }/> Prasarana Energi</label><br/>
       <label><input type="checkbox" data-layer="lainnya" ${
         showPsl ? "checked" : ""
-      }/> Lainnya</label>
+      }/> Prasarana Lainnya</label>
     `;
     };
 
@@ -488,7 +487,7 @@ export default function Map({ showPolaRuang, kecamatanLayers }: MapProps) {
       pola: "/data/Pola_Ruang_2.geojson",
       ksd: "/data/KSD.geojson",
       krb: "/data/KRB.geojson",
-      tnk: "/data/Tanah_Kosong.geojson",
+      tnk: "/data/Tanah_Kosong_2.geojson",
     };
 
     // 1) If showPolaRuang (prop) true => load pola/ksd/krb/tnk accordingly
